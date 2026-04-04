@@ -807,7 +807,7 @@ const PlantDiseaseDetector = () => {
   return (
     <>
       <PageTitle title="Crop Disease Diagnosis Tool" />
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 p-4 sm:p-8 relative">
+      <div className="min-h-screen bg-gray-50 pt-20 lg:pt-24 p-4 sm:p-8 relative">
       {/* Language and Voice Controls - Fixed Responsive Positioning */}
       <div className="fixed top-4 right-4 z-[60] flex flex-col gap-2 md:flex-row mt-20">
         {/* Language Selector */}
