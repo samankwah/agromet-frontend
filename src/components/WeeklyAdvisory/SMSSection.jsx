@@ -6,6 +6,7 @@
 
 import React from 'react';
 import { FaSms, FaMobileAlt, FaCopy } from 'react-icons/fa';
+import SpeakButton from '../common/SpeakButton';
 
 const SMSSection = ({ smsText }) => {
   const [copied, setCopied] = React.useState(false);
@@ -40,16 +41,19 @@ const SMSSection = ({ smsText }) => {
             </div>
           </div>
 
-          {/* Copy Button */}
+          {/* Copy & Speak Buttons */}
           {smsText && smsText.trim() !== '' && smsText.trim() !== '-' && (
-            <button
-              onClick={handleCopy}
-              className="flex items-center gap-2 px-3 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-medium rounded-md transition-all duration-200 shadow-sm"
-              title="Copy SMS text to clipboard"
-            >
-              <FaCopy />
-              {copied ? 'Copied!' : 'Copy'}
-            </button>
+            <div className="flex items-center gap-2">
+              <SpeakButton text={smsText} />
+              <button
+                onClick={handleCopy}
+                className="flex items-center gap-2 px-3 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-medium rounded-md transition-all duration-200 shadow-sm"
+                title="Copy SMS text to clipboard"
+              >
+                <FaCopy />
+                {copied ? 'Copied!' : 'Copy'}
+              </button>
+            </div>
           )}
         </div>
 

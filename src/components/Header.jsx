@@ -13,6 +13,7 @@ import {
   FaTimes,
   FaCamera,
 } from "react-icons/fa";
+import LanguageSelector from "./common/LanguageSelector";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import logo2 from "../assets/images/agromet-high-resolution-logo-transparent.png";
@@ -289,6 +290,12 @@ const Header = () => {
 
         <div className="hidden lg:flex flex-col border-2 border-gray-100 h-8 mx-2" />
 
+        <div className="hidden lg:flex items-center">
+          <LanguageSelector variant="header" />
+        </div>
+
+        <div className="hidden lg:flex flex-col border-2 border-gray-100 h-8 mx-2" />
+
         <Link
           to="/admin-login"
           className={`hidden lg:flex px-3 font-semibold text-sm border-b-2 ${
@@ -336,6 +343,11 @@ const Header = () => {
               {/* Mobile Menu Content */}
               <div className="h-[calc(100%-68px)] overflow-y-auto">
                 <nav className="flex flex-col">
+                  {/* Language Selector */}
+                  <div className="px-4 py-3 border-b border-gray-100">
+                    <LanguageSelector variant="inline" />
+                  </div>
+
                   {/* Main Navigation Items */}
                   <Link
                     to="/"

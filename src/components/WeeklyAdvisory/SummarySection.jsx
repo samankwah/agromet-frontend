@@ -6,6 +6,7 @@
 
 import React from 'react';
 import { FaFileAlt, FaInfoCircle } from 'react-icons/fa';
+import SpeakButton from '../common/SpeakButton';
 
 const SummarySection = ({ summary }) => {
   if (!summary) return null;
@@ -26,6 +27,9 @@ const SummarySection = ({ summary }) => {
               Overall Summary Weather Outlook & Advisory
             </p>
           </div>
+          {summary && summary.trim() !== '' && summary.trim() !== '-' && (
+            <SpeakButton text={summary} label="Listen" />
+          )}
         </div>
 
         {/* Summary Content */}

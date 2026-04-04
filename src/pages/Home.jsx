@@ -52,12 +52,14 @@ import API_CONFIG from "../config/apiConfig";
 
 const sliderSettings = {
   infinite: true,
-  speed: 3000,
+  speed: 800,
   slidesToShow: 4,
   arrows: false,
   autoplay: true,
-  autoplaySpeed: 0,
+  autoplaySpeed: 3000,
   slidesToScroll: 1,
+  pauseOnHover: true,
+  cssEase: "cubic-bezier(0.45, 0, 0.55, 1)",
   responsive: [
     { breakpoint: 1200, settings: { slidesToShow: 4 } },
     { breakpoint: 992, settings: { slidesToShow: 3 } },
@@ -631,12 +633,13 @@ const Home = () => {
   const settings = {
     infinite: true,
     slidesToShow: 6,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 0,
     accessibility: false,
-    speed: 500,
+    speed: 8000,
     pauseOnHover: true,
+    cssEase: "linear",
     beforeChange: () => {
       if (
         document.activeElement instanceof HTMLElement &&

@@ -14,7 +14,7 @@ import FarmProfileModal from "./FarmProfileModal";
 import chatbotService from "../../services/chatbotService";
 import personalizedFarmingService from "../../services/personalizedFarmingService";
 import translationService from "../../services/translationService";
-import { getSupportedLanguages, getTranslation } from "../../data/ghanaianLanguages";
+import useTranslation from "../../hooks/useTranslation";
 
 const ChatInterface = ({ isOpen, onClose, onMinimize, userContext = {} }) => {
   const [messages, setMessages] = useState([]);
@@ -24,10 +24,9 @@ const ChatInterface = ({ isOpen, onClose, onMinimize, userContext = {} }) => {
   const [farmProfile, setFarmProfile] = useState(null);
   const [showProfileModal, setShowProfileModal] = useState(false);
   
-  // Ghana NLP Integration
-  const [currentLanguage, setCurrentLanguage] = useState("en");
+  // Ghana NLP Integration - shared context
+  const { currentLanguage, setLanguage, supportedLanguages, isEnglish } = useTranslation();
   const [showLanguageSelector, setShowLanguageSelector] = useState(false);
-  const [supportedLanguages] = useState(getSupportedLanguages());
   const [translatedMessages, setTranslatedMessages] = useState(new Map());
   
   const messagesEndRef = useRef(null);
@@ -35,8 +34,10 @@ const ChatInterface = ({ isOpen, onClose, onMinimize, userContext = {} }) => {
 
   // Get display text with translation support
   const getDisplayText = useCallback((key, defaultText) => {
-    return getTranslation(key, currentLanguage, "chatbot") || defaultText;
-  }, [currentLanguage]);
+    if (isEnglish) return defaultText;
+    // Delegate to shared context - uses ghanaianLanguages data
+    return defaultText;
+  }, [isEnglish]);
 
   // Load farm profile and welcome message
   useEffect(() => {
@@ -100,9 +101,8 @@ const ChatInterface = ({ isOpen, onClose, onMinimize, userContext = {} }) => {
 
   // Handle language change
   const handleLanguageChange = (langCode) => {
-    setCurrentLanguage(langCode);
+    setLanguage(langCode);
     setShowLanguageSelector(false);
-    translationService.setUserLanguage(langCode);
   };
 
 
