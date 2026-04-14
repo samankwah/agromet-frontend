@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   FaTimes,
   FaMinusCircle,
@@ -25,19 +25,12 @@ const ChatInterface = ({ isOpen, onClose, onMinimize, userContext = {} }) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
   
   // Ghana NLP Integration - shared context
-  const { currentLanguage, setLanguage, supportedLanguages, isEnglish } = useTranslation();
+  const { currentLanguage, setLanguage, supportedLanguages, isEnglish, getDisplayText } = useTranslation();
   const [showLanguageSelector, setShowLanguageSelector] = useState(false);
   const [translatedMessages, setTranslatedMessages] = useState(new Map());
-  
+
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
-
-  // Get display text with translation support
-  const getDisplayText = useCallback((key, defaultText) => {
-    if (isEnglish) return defaultText;
-    // Delegate to shared context - uses ghanaianLanguages data
-    return defaultText;
-  }, [isEnglish]);
 
   // Load farm profile and welcome message
   useEffect(() => {

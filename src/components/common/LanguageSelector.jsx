@@ -30,12 +30,12 @@ const LanguageSelector = ({ variant = 'header' }) => {
         onClick={() => setOpen(!open)}
         className={
           isHeader
-            ? 'flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-gray-200 hover:border-green-400 hover:bg-green-50 transition-all text-sm font-medium text-gray-700'
+            ? 'flex items-center gap-1 px-3 py-2 text-sm font-semibold text-black border-b-2 border-transparent hover:border-black transition-all whitespace-nowrap'
             : 'bg-white/95 backdrop-blur-sm border border-green-200 rounded-full w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 flex items-center justify-center md:gap-2 shadow-lg hover:border-green-400 transition-all duration-300'
         }
         aria-label="Select language"
       >
-        <Globe className={isHeader ? 'w-4 h-4 text-green-600' : 'w-5 h-5 text-green-600 md:w-4 md:h-4'} />
+        <Globe className={isHeader ? 'w-4 h-4 text-black mr-1' : 'w-5 h-5 text-green-600 md:w-4 md:h-4'} />
         <span className={isHeader ? '' : 'hidden lg:inline text-green-700 font-medium text-sm'}>
           {supportedLanguages[currentLanguage]?.name || 'English'}
         </span>

@@ -20,7 +20,6 @@ import axiosRetry from "axios-retry";
 import translationService from "../services/translationService";
 import diseaseDetectionService from "../services/diseaseDetectionService";
 import useTranslation from "../hooks/useTranslation";
-import LanguageSelector from "./common/LanguageSelector";
 import SpeakButton from "./common/SpeakButton";
 
 axiosRetry(axios, {
@@ -720,12 +719,11 @@ const PlantDiseaseDetector = () => {
   return (
     <>
       <PageTitle title="Crop Disease Diagnosis Tool" />
-      <div className="min-h-screen bg-gray-50 pt-20 lg:pt-24 p-4 sm:p-8 relative">
-      {/* Language and Voice Controls - Fixed Responsive Positioning */}
+      <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-emerald-50/30 pt-20 lg:pt-24 p-4 sm:p-8 relative overflow-hidden">
+      <div className="absolute top-0 -left-40 w-[500px] h-[500px] bg-emerald-200/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-96 -right-40 w-[500px] h-[500px] bg-teal-200/30 rounded-full blur-3xl pointer-events-none" />
+      {/* Voice Controls - Fixed Responsive Positioning */}
       <div className="fixed top-4 right-4 z-[60] flex flex-col gap-2 md:flex-row mt-20">
-        {/* Language Selector */}
-        <LanguageSelector variant="floating" />
-
         {/* Text-to-Speech Button */}
         {(result || translatedResult) && (
           <SpeakButton
@@ -749,7 +747,7 @@ const PlantDiseaseDetector = () => {
         </motion.button>
       </div>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -757,10 +755,15 @@ const PlantDiseaseDetector = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4 mt-20">
-            {getDisplayText("welcome", "Health Check")}
+          <span className="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold uppercase tracking-wider mb-4 mt-20">
+            {getDisplayText("cropDiagnosis", "Crop Diagnosis")}
+          </span>
+          <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-4">
+            <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+              {getDisplayText("welcome", "Health Check")}
+            </span>
           </h1>
-          <p className="text-gray-600 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
             {getDisplayText(
               "uploadImage",
               "AI-powered plant disease detection for healthier crops"
@@ -795,9 +798,9 @@ const PlantDiseaseDetector = () => {
             transition={{ duration: 0.5 }}
             className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-6 sm:p-8 border border-white/20"
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-8 flex items-center">
-              <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-3 rounded-xl mr-4">
-                <Camera className="w-6 h-6 text-white" />
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-8 flex items-center">
+              <div className="bg-emerald-50 text-emerald-600 p-3 rounded-xl mr-4">
+                <Camera className="w-6 h-6" />
               </div>
               {getDisplayText("uploadPlantImage", "Upload Plant Image")}
             </h2>
@@ -852,7 +855,7 @@ const PlantDiseaseDetector = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleCameraCapture}
-                    className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white py-3 px-4 rounded-xl font-semibold flex items-center justify-center"
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-4 rounded-xl font-semibold flex items-center justify-center transition-colors"
                     aria-label="Capture image with camera"
                     onKeyDown={(e) => handleKeyDown(e, handleCameraCapture)}
                   >
@@ -868,7 +871,7 @@ const PlantDiseaseDetector = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => fileInputRef.current?.click()}
-                    className="bg-gradient-to-r from-green-500 to-emerald-500 text-white py-3 px-4 rounded-xl font-semibold flex items-center justify-center"
+                    className="border border-slate-300 hover:border-emerald-600 hover:text-emerald-700 text-slate-700 py-3 px-4 rounded-xl font-semibold flex items-center justify-center transition-colors"
                     aria-label="Choose file from device"
                     onKeyDown={(e) =>
                       handleKeyDown(e, () => fileInputRef.current?.click())
@@ -912,7 +915,7 @@ const PlantDiseaseDetector = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={captureCameraImage}
-                    className="bg-gradient-to-r from-green-500 to-emerald-500 text-white py-3 px-4 rounded-xl font-semibold flex items-center justify-center"
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-4 rounded-xl font-semibold flex items-center justify-center transition-colors"
                     aria-label="Capture camera image"
                     onKeyDown={(e) => handleKeyDown(e, captureCameraImage)}
                   >
@@ -976,7 +979,7 @@ const PlantDiseaseDetector = () => {
                     whileTap={{ scale: 0.95 }}
                     onClick={detectDisease}
                     disabled={isLoading}
-                    className="bg-gradient-to-r from-green-500 to-emerald-500 disabled:from-gray-400 disabled:to-gray-500 text-white py-3 px-4 rounded-xl font-semibold flex items-center justify-center"
+                    className="bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-400 text-white py-3 px-4 rounded-xl font-semibold flex items-center justify-center transition-colors"
                     aria-label="Analyze plant image"
                     onKeyDown={(e) => handleKeyDown(e, detectDisease)}
                   >
@@ -996,7 +999,7 @@ const PlantDiseaseDetector = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => fileInputRef.current?.click()}
-                    className="bg-gradient-to-r from-gray-500 to-gray-600 text-white py-3 px-4 rounded-xl font-semibold flex items-center justify-center"
+                    className="border border-slate-300 hover:border-emerald-600 hover:text-emerald-700 text-slate-700 py-3 px-4 rounded-xl font-semibold flex items-center justify-center transition-colors"
                     aria-label="Change image"
                     onKeyDown={(e) =>
                       handleKeyDown(e, () => fileInputRef.current?.click())
@@ -1035,9 +1038,9 @@ const PlantDiseaseDetector = () => {
             transition={{ duration: 0.5 }}
             className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-6 sm:p-8 border border-white/20"
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-8 flex items-center">
-              <div className="bg-gradient-to-r from-emerald-500 to-green-500 p-3 rounded-xl mr-4">
-                <CheckCircle className="w-6 h-6 text-white" />
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-8 flex items-center">
+              <div className="bg-emerald-50 text-emerald-600 p-3 rounded-xl mr-4">
+                <CheckCircle className="w-6 h-6" />
               </div>
               {getDisplayText("resultsReady", "Analysis Results")}
             </h2>
@@ -1091,7 +1094,7 @@ const PlantDiseaseDetector = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => fileInputRef.current?.click()}
-                  className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 px-6 rounded-2xl font-bold text-lg flex items-center justify-center"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-4 px-6 rounded-2xl font-bold text-lg flex items-center justify-center transition-colors"
                   aria-label="Try another image"
                   onKeyDown={(e) =>
                     handleKeyDown(e, () => fileInputRef.current?.click())
@@ -1223,7 +1226,7 @@ const PlantDiseaseDetector = () => {
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
               <div>
-                <h2 className="text-2xl font-bold text-gray-800">
+                <h2 className="text-2xl font-semibold text-slate-900">
                   {getDisplayText("diagnosisHistory", "Diagnosis History")}
                 </h2>
                 <p className="text-sm text-gray-500 mt-1">
@@ -1237,7 +1240,7 @@ const PlantDiseaseDetector = () => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={loadDiagnosisHistory}
-                className="bg-gradient-to-r from-emerald-500 to-green-500 text-white py-2 px-4 rounded-xl font-semibold flex items-center justify-center"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-4 rounded-xl font-semibold flex items-center justify-center transition-colors"
               >
                 <RefreshCw className="w-4 h-4 mr-2" />
                 {getDisplayText("refreshHistory", "Refresh")}
@@ -1287,7 +1290,7 @@ const PlantDiseaseDetector = () => {
                           </span>
                         )}
                       </div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-800">
+                      <h3 className="text-base sm:text-lg font-semibold text-slate-900">
                         {item.disease || getDisplayText("couldNotDetect", "Could not detect disease")}
                       </h3>
                       <p className="text-sm text-gray-500 mt-1">
@@ -1300,7 +1303,7 @@ const PlantDiseaseDetector = () => {
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
                         onClick={() => viewHistoryItem(item)}
-                        className="bg-blue-500 text-white py-2 px-4 rounded-xl font-semibold"
+                        className="bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-4 rounded-xl font-semibold transition-colors"
                       >
                         {getDisplayText("viewSavedDiagnosis", "View")}
                       </motion.button>

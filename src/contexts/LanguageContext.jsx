@@ -28,6 +28,10 @@ export const LanguageProvider = ({ children }) => {
 
   const setLanguage = useCallback((code) => {
     if (translationService.setUserLanguage(code)) {
+      // Reset circuit breaker so API calls are retried with the new language
+      translationService.resetTranslationCircuitBreaker();
+      // Purge any stale cache entries where "translation" is just the original English text
+      translationService.purgeStaleEntries(code);
       setCurrentLanguage(code);
     }
   }, []);
@@ -112,7 +116,7 @@ export const LanguageProvider = ({ children }) => {
   );
 
   const getDisplayText = useCallback(
-    (key, fallback, category = 'agriculturalTerms') => {
+    (key, fallback, category = 'phrases') => {
       if (currentLanguage === 'en') return fallback;
       return getTranslation(key, currentLanguage, category) || fallback;
     },

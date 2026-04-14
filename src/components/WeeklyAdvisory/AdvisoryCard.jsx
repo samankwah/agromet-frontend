@@ -6,6 +6,7 @@
 
 import React from 'react';
 import SpeakButton from '../common/SpeakButton';
+import T from '../common/T';
 
 const AdvisoryCard = ({ title, icon, advisory, accentColor = 'green' }) => {
   const colorClasses = {
@@ -96,7 +97,7 @@ const AdvisoryCard = ({ title, icon, advisory, accentColor = 'green' }) => {
             </>
           ) : (
             <p className="text-slate-400 text-sm italic text-center">
-              No specific advisory for this parameter
+              <T>No specific advisory for this parameter</T>
             </p>
           )}
         </div>
