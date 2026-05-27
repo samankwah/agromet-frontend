@@ -29,8 +29,9 @@ export default defineConfig({
           if (
             normalizedId.includes("/node_modules/react/") ||
             normalizedId.includes("/node_modules/react-dom/") ||
-            normalizedId.includes("/node_modules/react-router/") ||
-            normalizedId.includes("/node_modules/react-router-dom/")
+            normalizedId.includes("/node_modules/scheduler/") ||
+            normalizedId.includes("/node_modules/loose-envify/") ||
+            normalizedId.includes("/node_modules/js-tokens/")
           ) {
             return "react-vendor";
           }
@@ -50,19 +51,6 @@ export default defineConfig({
             normalizedId.includes("/node_modules/jspdf-autotable/")
           ) {
             return "pdf-vendor";
-          }
-
-          if (
-            normalizedId.includes("/node_modules/framer-motion/") ||
-            normalizedId.includes("/node_modules/motion-dom/") ||
-            normalizedId.includes("/node_modules/motion-utils/") ||
-            normalizedId.includes("/node_modules/react-remove-scroll/") ||
-            normalizedId.includes("/node_modules/react-remove-scroll-bar/") ||
-            normalizedId.includes("/node_modules/react-style-singleton/") ||
-            normalizedId.includes("/node_modules/use-callback-ref/") ||
-            normalizedId.includes("/node_modules/use-sidecar/")
-          ) {
-            return "motion-vendor";
           }
 
           if (
