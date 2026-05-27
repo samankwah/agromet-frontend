@@ -66,10 +66,22 @@ export default defineConfig({
           }
 
           if (
+            normalizedId.includes("/node_modules/@reduxjs/toolkit/") ||
+            normalizedId.includes("/node_modules/clsx/") ||
             normalizedId.includes("/node_modules/recharts/") ||
+            normalizedId.includes("/node_modules/react-is/") ||
+            normalizedId.includes("/node_modules/react-redux/") ||
+            normalizedId.includes("/node_modules/redux/") ||
+            normalizedId.includes("/node_modules/reselect/") ||
             normalizedId.includes("/node_modules/chart.js/") ||
             normalizedId.includes("/node_modules/react-chartjs-2/") ||
             normalizedId.includes("/node_modules/@amcharts/amcharts5/") ||
+            normalizedId.includes("/node_modules/decimal.js-light/") ||
+            normalizedId.includes("/node_modules/eventemitter3/") ||
+            normalizedId.includes("/node_modules/immer/") ||
+            normalizedId.includes("/node_modules/tiny-invariant/") ||
+            normalizedId.includes("/node_modules/use-sync-external-store/") ||
+            normalizedId.includes("/node_modules/victory-vendor/") ||
             normalizedId.includes("/node_modules/d3-")
           ) {
             return "charts-vendor";
