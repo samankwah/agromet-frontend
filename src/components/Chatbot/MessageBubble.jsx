@@ -88,7 +88,7 @@ const MessageBubble = ({
         <div
           className={`rounded-neo px-3 sm:px-4 md:px-5 py-2 sm:py-3 md:py-4 ${
             isUser
-              ? 'bg-neo-teal text-white ml-auto shadow-neo-soft'
+              ? 'ml-auto bg-neo-teal text-neo-on-teal shadow-neo-soft'
               : 'neo-inset text-neo-text'
           }`}
         >
