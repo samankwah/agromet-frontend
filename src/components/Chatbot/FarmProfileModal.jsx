@@ -184,7 +184,7 @@ const FarmProfileModal = ({ isOpen, onClose, onProfileCreated }) => {
                 key={stepNum}
                 className={`flex items-center justify-center w-8 h-8 rounded-full ${
                   stepNum <= step 
-                    ? 'bg-neo-accent text-white shadow-neo-soft' 
+                    ? 'bg-neo-accent text-neo-on-accent shadow-neo-soft'
                     : 'bg-neo-bg text-neo-muted shadow-neo-pressed'
                 }`}
               >

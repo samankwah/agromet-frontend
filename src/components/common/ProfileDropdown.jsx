@@ -37,7 +37,7 @@ const ProfileDropdown = ({ user, onLogout }) => {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <button className="neo-button min-h-0 flex items-center space-x-3 py-2 pl-2 pr-3 focus:outline-none">
-          <div className="h-8 w-8 rounded-full bg-neo-accent flex items-center justify-center text-white font-semibold text-sm">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neo-accent text-sm font-semibold text-neo-on-accent">
             {getInitials(user?.name)}
           </div>
           <div className="hidden sm:block text-left">
@@ -59,7 +59,7 @@ const ProfileDropdown = ({ user, onLogout }) => {
           {/* User Info Section */}
           <div className="px-3 py-4 border-b neo-divider">
             <div className="flex items-center space-x-3">
-              <div className="h-10 w-10 rounded-full bg-neo-accent flex items-center justify-center text-white font-semibold">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-neo-accent font-semibold text-neo-on-accent">
                 {getInitials(user?.name)}
               </div>
               <div className="flex-1 min-w-0">

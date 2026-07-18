@@ -634,7 +634,7 @@ const UniversalDataTable = ({
                         onClick={() => setCurrentPage(page)}
                         className={`px-3 py-1 border rounded-md ${
                           currentPage === page
-                            ? "bg-neo-accent text-white border-neo-accent"
+                            ? "border-neo-accent bg-neo-accent text-neo-on-accent"
                             : "border-neo-border hover:bg-white/55"
                         }`}
                       >
